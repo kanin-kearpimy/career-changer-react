@@ -5,3 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 })
+
+// , babelDev({ babelConfig: {plugins: ['@babel/plugin-proposal-decorators']}})
