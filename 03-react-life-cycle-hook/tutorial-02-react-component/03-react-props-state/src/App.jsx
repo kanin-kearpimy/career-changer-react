@@ -1,12 +1,34 @@
 import React from 'react';
 
 class App extends React.Component {
+  
+  constructor(props) {
+  super(props)
+  this.state = { 
+    temperature: 34,
+  };
+
+  this.handleIncrease = this.handleIncrease.bind(this);
+  this.handleDecrease = this.handleDecrease.bind(this);
+  
+}
+
+  handleIncrease() {
+    this.setState({ temperature: this.state.temperature + 1 });
+  }
+
+  handleDecrease() {
+    this.setState({ temperature: this.state.temperature - 1 });
+  }
+  
   render() {
     return (
       <div id="app">
-        <Header />
-        <Content />
-        <Footer />
+        <Header temperature={this.state.temperature}/>
+        <Content temperature={this.state.temperature}/>
+        <Footer 
+          onIncrease={this.handleIncrease} 
+          onDecrease={this.handleDecrease} />
       </div>
     );
   }
@@ -21,7 +43,7 @@ class Header extends React.Component {
     return (
       <header>
         <span>Turn on / off</span>
-        <p>Current Temperature: XXX</p>
+        <p>Current Temperature: {this.props.temperature} Oc</p>
       </header>
     );
   }
@@ -33,7 +55,7 @@ class Content extends React.Component {
   render() {
     return (
       <main>
-        <Temperature />
+        <Temperature temperature={this.props.temperature} />
       </main>
     );
   }
@@ -43,7 +65,7 @@ class Temperature extends React.Component {
   render() {
     return (
       <div id="temperature">
-        <span>____ Oc</span>
+        <span>{this.props.temperature} Oc</span>
       </div>
     );
   }
@@ -53,8 +75,8 @@ class Footer extends React.Component {
   render() {
     return (
       <footer>
-        <button>Up</button>
-        <button>Down</button>
+        <button onClick={this.props.onIncrease}>Up</button>
+        <button onClick={this.props.onDecrease}>Down</button>
       </footer>
     );
   }

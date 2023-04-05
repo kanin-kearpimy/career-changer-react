@@ -1,6 +1,7 @@
 import React from 'react';
 
 class App extends React.Component {
+
   render() {
     return (
       <div id="app">
@@ -17,8 +18,10 @@ class App extends React.Component {
 class Header extends React.Component {
   render() {
     return (
-      // Code here
-      // <Header />
+      <header>
+        <span>Turn on / off</span>
+        <p>Current Temperature:XXX</p>
+      </header>
     );
   }
 }
@@ -26,17 +29,26 @@ class Header extends React.Component {
 class Content extends React.Component {
   render() {
     return (
-      // Code here
-      // <Content />
+      <main>
+      <Temperature />
+      </main>
     );
   }
 }
 
 class Temperature extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { 
+      temperature: 34
+    
+    }
+  }
   render() {
     return (
-      // Code here
-      // <Temperature />
+      <div id="temperature">
+        <span>{this.state.temperature}Oc</span>
+      </div>
     );
   }
 }
@@ -44,8 +56,10 @@ class Temperature extends React.Component {
 class Footer extends React.Component {
   render() {
     return (
-      // Code here
-      // <Footer />
+      <footer>
+        <button>Up</button>
+        <button>Down</button>
+      </footer>
     );
   }
 }
