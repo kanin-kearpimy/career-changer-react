@@ -1,11 +1,24 @@
 import React from 'react';
-
+import { getTemp } from './api/getTemp';
 class Mounting extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      temperature: 0
+    }
+  }
+
+  componentDidMount() {
+    const real_temperature = getTemp()
+    this.setState({temperature: real_temperature})
+  }
+  
   render() {
     return (
       <div id="app">
-        <Header />
-        <Content />
+        <Header temperature={this.state.temperature} />
+        <Content temperature={this.state.temperature} />
         <Footer />
       </div>
     );
@@ -17,7 +30,7 @@ class Header extends React.Component {
     return (
       <header>
         <span>Turn on / off</span>
-        <p>Current Temperature: XXX</p>
+        <p>Current Temperature: {this.props.temperature}</p>
       </header>
     );
   }
@@ -27,7 +40,7 @@ class Content extends React.Component {
   render() {
     return (
       <main>
-        <Temperature />
+        <Temperature temperature={this.props.temperature} />
       </main>
     );
   }
@@ -37,7 +50,7 @@ class Temperature extends React.Component {
   render() {
     return (
       <div id="temperature">
-        <span>____ Oc</span>
+        <span>{this.props.temperature} Oc</span>
       </div>
     );
   }

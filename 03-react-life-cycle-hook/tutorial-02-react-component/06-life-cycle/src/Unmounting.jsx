@@ -1,12 +1,30 @@
 import React from 'react';
 
 class Unmounting extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      temperature: 1
+    }
+    this.decreate = this.decreate.bind(this)
+  }
+
+  decreate() {
+    let previous_temperature = this.state.temperature
+    previous_temperature -= 1
+    this.setState(
+      {
+        temperature: previous_temperature
+      }
+    ) 
+  }
+
   render() {
     return (
       <div id="app">
         <Header />
-        <Content />
-        <Footer />
+        <Content temperature={this.state.temperature} />
+        <Footer decreate={this.decreate} />
       </div>
     );
   }
@@ -25,19 +43,32 @@ class Header extends React.Component {
 
 class Content extends React.Component {
   render() {
-    return (
-      <main>
-        <Temperature />
-      </main>
-    );
+    if(this.props.temperature < 0) {
+      return (
+        <div>
+          Error
+        </div>
+      )
+    }else{
+      return (
+        <main>
+          <Temperature temperature={this.props.temperature} />
+        </main>
+      );
+    }
+
   }
 }
 
 class Temperature extends React.Component {
+  componentWillUnmount() {
+    alert('สาธุ 99')
+  }
+
   render() {
     return (
       <div id="temperature">
-        <span>____ Oc</span>
+        <span>{this.props.temperature} Oc</span>
       </div>
     );
   }
@@ -48,7 +79,7 @@ class Footer extends React.Component {
     return (
       <footer>
         <button>Up</button>
-        <button>Down</button>
+        <button onClick={this.props.decreate}>Down</button>
       </footer>
     );
   }
