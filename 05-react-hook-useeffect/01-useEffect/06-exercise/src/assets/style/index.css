@@ -1,0 +1,28 @@
+.game-panel {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-panel .panel-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-header h1 {
+  margin: 12px;
+}
+
+.panel-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-footer button {
+  margin: 2px;
+  width: 100%;
+  height: 100%;
+}
