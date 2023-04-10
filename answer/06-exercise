@@ -1,0 +1,43 @@
+import React, { useState, useEffect } from "react";
+
+const App = () => {
+  const [healthPoint, setHealthPoint] = useState(999)
+  const [damange, setDamange] = useState(0)
+  const [cummulativeDamange, setCummulativeDamange] = useState(0)
+
+  useEffect(() => {
+    if(damange > 0) {
+      setHealthPoint(healthPoint - damange)
+      setCummulativeDamange(cummulativeDamange + damange)
+    }
+  }, [damange])
+
+  const ultimateSkill = () => {
+    const ultimateDamage = Math.floor(Math.random(0.5,1) * 100)
+    setDamange(ultimateDamage)
+    setCummulativeDamange(0)
+  }
+
+  let result = <img src="https://www.generation.org/wp-content/uploads/2020/06/you-employed-home-square2-2x.png" alt="" />
+
+  if(healthPoint <= 0) {
+    result = <h1>You Win!!!</h1>
+  }
+
+  return (
+    <div className="game-panel">
+      <h2>Boss Name: You employed</h2>
+      <div className="panel-header">
+          <h1>HP: {healthPoint} </h1> 
+          <h3>- {damange} damage</h3>
+      </div>
+      {result}
+      <div className="panel-footer">
+        <button onClick={() => setDamange(Math.floor(Math.random(0, 1) * 30))}>Paunch</button>
+        <button onClick={ultimateSkill} disabled={cummulativeDamange < 300}>Ultimate Skill</button>
+      </div>
+    </div>
+  );
+};
+
+export default App;

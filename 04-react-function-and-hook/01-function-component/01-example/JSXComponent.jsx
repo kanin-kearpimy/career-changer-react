@@ -7,7 +7,6 @@ function JSXComponent() {
     )
 }
 
-
 const JSXComponent = () => {
     return (
         <div>
@@ -16,6 +15,3 @@ const JSXComponent = () => {
         </div>
     )
 }
-
-
-
