@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import React from 'react'
 
 const App = () => {
     const [counter, setCounter] = useState(0)
@@ -11,7 +12,12 @@ const App = () => {
             <button onClick={
                 () => setCounter(counter + 1)
             }
-            >Count</button>
+            >Count</button> 
+            &nbsp;
+            <button onClick={
+                () => setCounter(counter - 1)
+            }
+            >Count-</button>
         </div>
     )
 }
