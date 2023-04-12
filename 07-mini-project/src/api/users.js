@@ -10,6 +10,20 @@ class UsersControl {
                     fullname: 'admin admin',
                     organization: 'Generation Thailand',
                     role: 'admin'
+                },
+                {
+                    username: 'user1',
+                    password: 'user1',
+                    fullname: 'user1 user1',
+                    organization: 'Generation Thailand',
+                    role: 'user'
+                },
+                {
+                    username: 'user2',
+                    password: 'user2',
+                    fullname: 'user2 user2',
+                    organization: 'Generation Thailand',
+                    role: 'user'
                 }
             ]))
         }
