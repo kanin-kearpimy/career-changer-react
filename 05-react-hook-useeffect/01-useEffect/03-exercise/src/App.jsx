@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const App = () => {
   const [rate, setRate] = useState(0);
-  const [exchange, setExchange] = useState(1);
+  const [exchange, setExchange] = useState(0);
 
   const syncRate = () => {
     setRate(30);
