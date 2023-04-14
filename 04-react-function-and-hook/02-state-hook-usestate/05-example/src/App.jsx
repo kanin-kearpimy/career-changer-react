@@ -1,17 +1,22 @@
 import { useState } from 'react'
 
+
+
 const App = () => {
-    const [counter, setCounter] = useState(0)
+    // const [stateVariable, stateMethod] = useState(initValue)
+    const [number, handleCounter] = useState(0)
     
     return (
         <div>
             <h3>People is coming from the gate. Please count.</h3>
-            <span>{counter}</span>
+            <span>{number}</span>
             &nbsp;
-            <button onClick={
-                () => setCounter(counter + 1)
-            }
+            <button
+                onClick={() => handleCounter(number + 1)}
             >Count</button>
+            <button
+                onClick={() => handleCounter(number - 1)}
+            >Decrease</button>
         </div>
     )
 }

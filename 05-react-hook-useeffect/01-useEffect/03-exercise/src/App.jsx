@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const App = () => {
   const [rate, setRate] = useState(0);
@@ -13,10 +13,12 @@ const App = () => {
     setExchange(newExchange);
   };
 
+  useEffect(syncRate, [])
+
   return (
     <div>
       <h1>Current Rate: {rate}</h1>
-      <button onClick={syncRate}>Sync Rate</button>
+      {/* <button onClick={syncRate}>Sync Rate</button> */}
       <input type="number" value={exchange} onChange={handleExchangeChange} />
       <h2>Calculated Exchange: {exchange * rate}</h2>
     </div>

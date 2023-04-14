@@ -4,12 +4,23 @@ import Layout from './Layout'
 const App = () => {
     
     return (
-        <Layout>
-            <div>
-                Application
-            </div>
-        </Layout>
+        <div>
+            <Layout>
+                <div>
+                    Application
+                </div>
+            </Layout>
+        </div>
     )
+
+    // return (
+    //     <div>
+    //         <Layout />
+    //         <div>
+    //             Application
+    //         </div>
+    //     </div>
+    // )
 }
 
 export default App

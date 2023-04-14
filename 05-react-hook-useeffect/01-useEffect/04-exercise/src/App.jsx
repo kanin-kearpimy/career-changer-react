@@ -35,6 +35,11 @@ function App() {
             <td>123 LLC</td>
             <td>Manager</td>
           </tr>
+          <tr>
+            <td>James</td>
+            <td>123 LLC</td>
+            <td>Manager</td>
+          </tr>
         </tbody>
       </table>
     </div>
