@@ -8,10 +8,14 @@ export const Context = createContext({})
 const UserContext = ({ children }) => {
     const userController = new UsersControl()
     const [currentUser, setCurrentUser] = useState(null)
+    const useForceUpdate = () => useState()[1]
+
     userController.init()
 
     const login = ({ username, password }) => {
         const [status, data] = userController.login({ username, password })
+
+        
         if(!status) {
             alert('login failed!')
             return
@@ -36,15 +40,13 @@ const UserContext = ({ children }) => {
         location.href = '/'
     }
 
-
-
-    const handlers = {
+    const [handlers, setHandlers] = useState({
         signup: userController.signup,
         fetchData: userController.fetchData,
         login: login,
         getCurrent: () => currentUser,
-        getUserRole: () => currentUser !== null ? currentUser.role : 'other'
-    }
+        currentRole: currentUser !== null ? currentUser.role : 'other'
+    })
 
     useEffect(() => {
         const user = userController.getUser()
@@ -53,9 +55,21 @@ const UserContext = ({ children }) => {
         }
     }, [])
 
+    useEffect(() => {
+        setHandlers({
+            signup: userController.signup,
+            fetchData: userController.fetchData,
+            login: login,
+            getCurrent: () => currentUser,
+            currentRole: currentUser !== null ? currentUser.role : 'other',
+        })
+    }, [currentUser])
+
     return (
         <Context.Provider value={handlers}>
-            {children}
+            <div id={handlers.getCurrent()}>
+                {children}
+            </div>
         </Context.Provider>
     )
 }
