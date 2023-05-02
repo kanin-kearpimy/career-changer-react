@@ -21,10 +21,22 @@ webServer.get("/users", (request, response) => {
 webServer.post("/users", (request, response) => {
   const name = request.body.name;
   const age = request.body.age;
-  const userId = `mock-id-${users.length}`;
-  users.push({ name, age, userId });
+  if (request.body.age === undefined) {
+    response.send("Error: Age is missing!");
+  }
+  const userId = `mock-id-${users.length + 1}`;
+  const newUser = { userId: userId, name: name, age: age };
+  users.push(newUser);
   response.send("Create User Success");
 });
+
+// webServer.post("/users", (request, response) => {
+//   const name = request.body.name;
+//   const age = request.body.age;
+//   const userId = `mock-id-${users.length}`;
+//   users.push({ name, age, userId });
+//   response.send("Create User Success");
+// });
 
 webServer.listen(port, ipAddress, () => {
   console.log(`Web Application Server is running on ${ipAddress} port ${port}`);
